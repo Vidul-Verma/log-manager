@@ -16,6 +16,30 @@ app.use(cors({ origin: process.env.CLIENT_URL, credentials: true }));
 app.use(json());
 app.use(cookieParser());
 
+const allowedOrigins = [
+    'http://localhost:3000',         // for local dev
+    'http://logmanager-frontend:3000',          // Docker internal name
+    'http://127.0.0.1:3000',         // optional
+  ];
+
+// app.use(cors({
+//     origin: 'http://localhost:3000', // or process.env.FRONTEND_URL
+//     credentials: true,               // ✅ needed if you're sending cookies
+//   }));
+
+app.use(cors({
+    origin: function (origin, callback) {
+      // allow requests with no origin (like curl or postman)
+      if (!origin) return callback(null, true);
+      if (allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      } else {
+        return callback(new Error('Not allowed by CORS'));
+      }
+    },
+    credentials: true, // if using cookies
+  }));
+
 connectDB()
 
 // Rate limiting

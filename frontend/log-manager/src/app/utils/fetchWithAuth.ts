@@ -22,6 +22,7 @@ export async function fetchWithAuth<T>(
   const options: RequestInit = {
     method,
     headers,
+    credentials: 'include', // Include cookies in the request
   };
 
   if (body !== undefined && method !== 'DELETE') {
