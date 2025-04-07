@@ -1,0 +1,28 @@
+
+services:
+  mongodb:
+    image: mongo
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodbdata:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: secret
+
+  nodeapp:
+    build: .
+    container_name: nodeapp
+    ports:
+      - "4000:4000"
+    environment:
+      - PORT=4000
+      - MONGO_URI=mongodb://admin:secret@mongodb:27017/balogmanager?authSource=admin
+      - JWT_SECRET=your_jwt_secret
+      - JWT_EXPIRES_IN=23h
+    depends_on:
+      - mongodb
+
+volumes:
+  mongodbdata:

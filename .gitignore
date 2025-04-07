@@ -1,0 +1,23 @@
+# --- Global ---
+.DS_Store
+.env
+.env.local
+node_modules/
+dist/
+build/
+coverage/
+
+# --- Logs ---
+logs/
+*.log
+npm-debug.log*
+
+# --- Docker ---
+*.pid
+docker-compose.override.yml
+
+# --- Next.js specific ---
+.next/
+out/
+.vercel/
+.cache/
