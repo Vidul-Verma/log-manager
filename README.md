@@ -33,8 +33,10 @@ cd log-manager
 ### 🧪 2. Run docker compose
 Install docker 
 https://www.docker.com/products/docker-desktop/
+Open docker app to setup environment and default configuration
 
-docker-compose build --no-cach
+From root dir i.e ../log-manager using terminal or command line, run following
+docker-compose build --no-cache
 docker-compose up
 
 
@@ -45,4 +47,8 @@ Go to http://localhost:3000/login and register a new user
 Once registered you will be redirected to add logs for current user. Use same password to login later or create new user to add/update/delete logs.
 
 Postman can be used to http://localhost:4000/ to hit server urls for nodejs after running the app
+
+### 🧪 4. To stop app 
+press ctrl+c on terminal to stop docker where its running and then
+Run following : docker-compose down
 
